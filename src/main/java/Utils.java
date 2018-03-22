@@ -41,4 +41,12 @@ public class Utils {
 		}
 		return isUnique;
 	}
+
+	public static String reverseString(String str) {
+		String resultString = "";
+		for (int i = str.length() - 1; i >= 0; i--) {
+			resultString = resultString + str.charAt(i);
+		}
+		return resultString;
+	}
 }
