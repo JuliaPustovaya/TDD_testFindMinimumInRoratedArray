@@ -1,3 +1,5 @@
+import java.util.HashSet;
+
 public class Utils {
 
 	public static int findMinimumInRoratedArray(int[] arr) {
@@ -24,5 +26,19 @@ public class Utils {
 		double getDegreesPerHours = (partsPerHour + (min / 12.0)) * degreePerMinute;
 		double getResultDegree = Math.abs(getDegreesPerHours - getDegreesMinutes);
 		return getResultDegree;
+	}
+
+	public static boolean IsAllCharsUnique(String str) {
+		boolean isUnique = true;
+		String strWithoutSymbol;
+		for (int i = 0; i < str.length(); i++) {
+			strWithoutSymbol = str.substring(i + 1, str.length());
+			String symbol = String.valueOf(str.charAt(i));
+			if (strWithoutSymbol.contains(symbol)) {
+				isUnique = false;
+				return isUnique;
+			}
+		}
+		return isUnique;
 	}
 }

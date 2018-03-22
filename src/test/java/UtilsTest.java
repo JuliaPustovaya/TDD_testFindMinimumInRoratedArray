@@ -18,5 +18,11 @@ public class UtilsTest {
 		Assert.assertEquals(105, Utils.calculateTimeAngle(9, 30), 0.1);
 		Assert.assertEquals(0, Utils.calculateTimeAngle(0, 0), 0.1);
 		Assert.assertEquals(0, Utils.calculateTimeAngle(12, 0), 0.1);
+
+	}
+	@Test
+	public void testIsAllCharsUnique_2() {
+		Assert.assertTrue(Utils.IsAllCharsUnique("asdfvie,"));
+		Assert.assertFalse(Utils.IsAllCharsUnique("asdfviea"));
 	}
 }
