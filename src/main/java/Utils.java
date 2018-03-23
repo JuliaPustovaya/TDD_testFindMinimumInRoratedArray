@@ -1,40 +1,45 @@
 import java.util.HashSet;
 
 public class Utils {
-
 	public static int findMinimumInRoratedArray(int[] arr) {
-		int temp, j;
-		for (int i = 0; i < arr.length - 1; i++) {
-			if (arr[i] > arr[i + 1]) {
-				temp = arr[i + 1];
-				arr[i + 1] = arr[i];
-				j = i;
-				while (j > 0 && temp < arr[j - 1]) {
-					arr[j] = arr[j - 1];
-					j--;
-				}
-				arr[j] = temp;
-			}
+		return getMinimum(arr, 0, arr.length - 1);
+	}
+
+	private static int getMinimum(int[] arrTemp, int left, int right) {
+		if (left == right) {
+			return arrTemp[left];
 		}
-		return arr[0];
+		int mid = (left + right) / 2;
+		if (arrTemp[left] > arrTemp[mid]) {
+			return getMinimum(arrTemp, left, mid);
+		} else if (arrTemp[mid] > arrTemp[right]) {
+			return getMinimum(arrTemp, mid + 1, right);
+		} else {
+			return arrTemp[left];
+		}
 	}
 
 	public static double calculateTimeAngle(int hour, int min) {
-		double degreePerMinute = 360.0 / 60.0;
-		double partsPerHour = ((hour >= 12) ? hour - 12 : hour) * 5.0;
+		int degreePerMinute = 360 / 60;
+		int hourClockDivisionsForMinutues = 5;
+		double partsPerHour = ((hour >= 12) ? hour - 12 : hour) * hourClockDivisionsForMinutues;
 		double getDegreesMinutes = min * degreePerMinute;
 		double getDegreesPerHours = (partsPerHour + (min / 12.0)) * degreePerMinute;
-		double getResultDegree = Math.abs(getDegreesPerHours - getDegreesMinutes);
-		return getResultDegree;
+		return Math.abs(getDegreesPerHours - getDegreesMinutes);
 	}
 
-	public static boolean IsAllCharsUnique(String str) {
+	public static boolean isAllCharsUnique(String str) {
+		char symbols[] = str.toCharArray();
+		int lengthSymbols = symbols.length;
 		boolean isUnique = true;
-		String strWithoutSymbol;
-		for (int i = 0; i < str.length(); i++) {
-			strWithoutSymbol = str.substring(i + 1, str.length());
-			String symbol = String.valueOf(str.charAt(i));
-			if (strWithoutSymbol.contains(symbol)) {
+		for (int i = 0; i < lengthSymbols - 1; i++) {
+			if (symbols[i] > symbols[i + 1]) {
+				char temp = symbols[i];
+				symbols[i] = symbols[i + 1];
+				symbols[i + 1] = temp;
+				i = 0;
+			}
+			if (symbols[i] == symbols[i + 1]) {
 				isUnique = false;
 				return isUnique;
 			}
@@ -43,10 +48,22 @@ public class Utils {
 	}
 
 	public static String reverseString(String str) {
-		String resultString = "";
-		for (int i = str.length() - 1; i >= 0; i--) {
-			resultString = resultString + str.charAt(i);
+		char symbols[] = str.toCharArray();
+		int lengthSymbols = symbols.length;
+		for (int i = 0; i < lengthSymbols / 2; i++) {
+			char temp = symbols[i];
+			symbols[i] = symbols[lengthSymbols - 1 - i];
+			symbols[lengthSymbols - 1 - i] = temp;
 		}
-		return resultString;
+		return new String(symbols);
+	}
+
+	private static int getFactorial(int n) {
+		int result;
+		if (n == 1) {
+			return 1;
+		}
+		result = getFactorial(n - 1) * n;
+		return result;
 	}
 }
