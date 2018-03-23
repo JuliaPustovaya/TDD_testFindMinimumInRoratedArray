@@ -47,7 +47,7 @@ public class Utils {
 		return isUnique;
 	}
 
-	public static String  reverseString(String str) {
+	public static String reverseString(String str) {
 		char symbols[] = str.toCharArray();
 		int lengthSymbols = symbols.length;
 		for (int i = 0; i < lengthSymbols / 2; i++) {
