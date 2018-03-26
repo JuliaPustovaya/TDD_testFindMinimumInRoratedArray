@@ -1,14 +1,15 @@
-package training;
+package training.Lambda;
   /*
      1) Functional interface with ONLY ONE abstract method +plenty of defaults methods;
      2) There are a lot of lambda realizations for 1 method;
      3) Class variable can be read/changed. if the are used in lambdas they should be declared static;
-     4) Method variables can be read/ Not changed. if the are used in lambdas they should be declared final
-     5) Functional interface also can be Generic
+     4) Method variables can be read/ Not changed. if the are used in lambdas they should be declared final;
+     5) Functional interface also can be Generic;
+     7) Lambda can be transfered like a param in the method;
 
    */
 
-public class LambaWork {
+public class LambaWorkMainClass {
 	static int A = 10;
 	static int B = 90;
 
