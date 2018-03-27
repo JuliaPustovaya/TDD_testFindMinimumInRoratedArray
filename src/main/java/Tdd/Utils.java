@@ -1,6 +1,9 @@
-import java.util.HashSet;
+package Tdd;
+
+import java.util.Arrays;
 
 public class Utils {
+
 	public static int findMinimumInRoratedArray(int[] arr) {
 		return getMinimum(arr, 0, arr.length - 1);
 	}
@@ -32,16 +35,11 @@ public class Utils {
 		char symbols[] = str.toCharArray();
 		int lengthSymbols = symbols.length;
 		boolean isUnique = true;
+		Arrays.sort(symbols);
 		for (int i = 0; i < lengthSymbols - 1; i++) {
-			if (symbols[i] > symbols[i + 1]) {
-				char temp = symbols[i];
-				symbols[i] = symbols[i + 1];
-				symbols[i + 1] = temp;
-				i = 0;
-			}
 			if (symbols[i] == symbols[i + 1]) {
 				isUnique = false;
-				return isUnique;
+				break;
 			}
 		}
 		return isUnique;
@@ -58,12 +56,40 @@ public class Utils {
 		return new String(symbols);
 	}
 
-	private static int getFactorial(int n) {
-		int result;
-		if (n == 1) {
+	public static int getFactorial(int n) {
+		if (n <= 1) {
 			return 1;
 		}
-		result = getFactorial(n - 1) * n;
-		return result;
+		return getFactorial(n - 1) * n;
+	}
+
+	public static void getNewStrings(String str) {
+		change("", str);
+	}
+
+	private static void change(String prefix, String str) {
+		int n = str.length();
+		if (n == 0) {
+			System.out.println(prefix);
+		} else {
+			for (int i = 0; i < n; i++) {
+				String tem1 = str.substring(0, i);
+				String tem2 = str.substring(i + 1, n);
+				change(prefix + str.charAt(i), tem1 + tem2);
+			}
+		}
+	}
+
+	public static void callMe(String str) {
+		checkMe(str);
+	}
+
+	public static String checkMe(String strTemp) {
+		for (int i = 0; i < strTemp.length(); i++) {
+			String q = strTemp.charAt(i) + "";
+			System.out.println(q);
+			checkMe(q.substring(i, q.length() - 1));
+		}
+		return "";
 	}
 }

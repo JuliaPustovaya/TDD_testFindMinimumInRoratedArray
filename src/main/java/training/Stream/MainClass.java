@@ -3,6 +3,7 @@ package training.Stream;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Optional;
+import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public class MainClass {
@@ -15,16 +16,21 @@ public class MainClass {
 				.map(p -> "Name: " + p.getName())
 				.skip(2)
 				.forEach(s -> System.out.println(s)); */
-
-		Optional<User> allNmaesInsentance= userStream.reduce((x,y)->{
-			if(x.getName().length()<5)
+		Optional<User> allNmaesInsentance = userStream.reduce((x, y) -> {
+			if (x.getName().length() < 5) {
 				return x;
-			 else
-			 	return y;
+			} else {
+				return y;
+			}
 		});
 		System.out.println(allNmaesInsentance.get().getName());
 		Stream<String> listStrings = Stream.of("Victoe", "Holanf", "Antob");
 		Optional<String> optional = listStrings.reduce((x, y) -> x + " love " + y);
 		System.out.println(optional.get());
+		Stream<User> stream = Stream.of(new User("A", 1), new User("B", 2));
+	//	ArrayList<User> sr = new ArrayList<>();
+	//	sr.addAll(stream.collect(Collectors.toCollection(ArrayList::new)));
+		stream.collect(Collectors.toMap(p -> p.getName(), k -> k.getPrice()));
+		//stream.forEach(a-> System.out.println(a));
 	}
 }
