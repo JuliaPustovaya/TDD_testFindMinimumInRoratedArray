@@ -1,6 +1,7 @@
 package Tdd;
 
 import java.util.Arrays;
+import java.util.HashSet;
 
 public class Utils {
 
@@ -63,13 +64,17 @@ public class Utils {
 		return getFactorial(n - 1) * n;
 	}
 
-	public static void getNewStrings(String str) {
+	public static HashSet<String> hashSet = new HashSet<>();
+
+	public static HashSet<String> getNewStrings(String str) {
 		change("", str);
+		return hashSet;
 	}
 
 	private static void change(String prefix, String str) {
 		int n = str.length();
 		if (n == 0) {
+			hashSet.add(prefix);
 			System.out.println(prefix);
 		} else {
 			for (int i = 0; i < n; i++) {
@@ -78,18 +83,5 @@ public class Utils {
 				change(prefix + str.charAt(i), tem1 + tem2);
 			}
 		}
-	}
-
-	public static void callMe(String str) {
-		checkMe(str);
-	}
-
-	public static String checkMe(String strTemp) {
-		for (int i = 0; i < strTemp.length(); i++) {
-			String q = strTemp.charAt(i) + "";
-			System.out.println(q);
-			checkMe(q.substring(i, q.length() - 1));
-		}
-		return "";
 	}
 }
